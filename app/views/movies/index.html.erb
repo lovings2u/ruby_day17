@@ -1,0 +1,29 @@
+<h1>Movies</h1>
+<div class="row">
+  <% @movies.each do |movie| %>
+  <div class="card col-md-3">
+    <img class="card-img-top" src="<%= movie.image_path %>" alt="<%= movie.title %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= movie.title %></h5>
+      <p class="card-text">장르: <%= movie.genre %></p>
+      <p class="card-text">주연배우: <%= movie.actor %></p>
+      <p class="card-text">감독: <%= movie.director %></p>
+      <%= link_to '영화 정보보기 ', movie_path(movie), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>
+
+<hr>
+<% if user_signed_in? %>
+<!--로그인 된 상태-->
+<%= current_user.email %>
+<%= link_to "로그아웃", destroy_user_session_path, method: "delete" %>
+<% else %>
+<!--로그아웃 된 상태-->
+<%= link_to "로그인", new_user_session_path %>
+<% end %>

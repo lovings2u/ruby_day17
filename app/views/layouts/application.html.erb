@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WatchaApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% flash.each do |k, v| %>
+      <div class="alert alert-<%= k %>"><%= v %></div>
+    <% end %>
+    <div class="container">
+    <%= yield %>
+    </div>
+  </body>
+</html>
