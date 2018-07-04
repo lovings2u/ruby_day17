@@ -29,54 +29,5 @@
 <% end %>
 
 <script>
-// var func1 = function() {
-//   alert("하위~1");
-//   // 함수 표현식
-//   // 선언되기 이전에 사용할 수 없다.
-// }
-// function func2() {
-//   alert("하위~2");
-//   // 함수 선언식
-//   // 선언되기 이전에도 사용할 수 있다.
-// }
-
-// var btn = document.getElementsByClassName("btn")[0];
-// btn.addEventListener("mouseover", func2);
-
-// var btn2 = document.getElementsByClassName("btn")[1];
-// btn2.onmouseover = func1;
-
-// 먼저 선언되어 있던 함수를 이벤트 핸들러로 사용할 경우
-// 함수 이름만 적어서 사용한다.
-// 함수이름() <- 이 형태는 함수의 실행을 의미한다.
-
-// 버튼(요소)에 마우스를 오버(이벤트) 했더니(이벤트 리스너)
-// 그 위에있던 글자(요소)들이 갑자기 이상한 글자로 변해버린다(이벤트 핸들러).
-// var index = 1;
-// var text = document.getElementsByClassName("card-title")[index].innerText;
-// var btn = document.getElementsByClassName("btn")[index];
-
-// btn.addEventListener("mouseover", function() {
-//   var title = document.getElementsByClassName("card-title")[index];
-//   console.dir(title);
-//   title.innerText = "Don't Touch me..";
-// });
-
-// btn.addEventListener("mouseout", function() {
-//   var title = document.getElementsByClassName("card-title")[index];
-//   title.innerText = text;
-// })
-// 익명함수
-
-// 버튼(요소)에 마우스를 올리면(이벤트, 이벤트 리스너)
-// 해당 버튼(요소)의 class가 btn btn-danger로 변함(이벤트 핸들러)
-var btn = document.getElementsByClassName("btn")[0];
-btn.addEventListener("mouseover", function() {
-  btn.setAttribute("class", "btn btn-danger");
-})
-
-btn.addEventListener("mouseout", function() {
-  btn.setAttribute("class", "btn btn-primary");
-})
 
 </script>

@@ -3,3 +3,15 @@
 <p><%= @movie.description %></p>
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
+<hr>
+<button class="btn btn-info like">좋아요</button>
+<script>
+$(document).on('ready', function() {
+    $('.like').on('click', function() {
+        console.log("like!!!");
+        $.ajax({
+           url: '/likes/<%= @movie.id %>' 
+        });
+    })
+});
+</script>

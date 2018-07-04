@@ -1,124 +1,172 @@
-# 20180704_day16
+# 20180704_Day17
 
-### HTML이 브라우저에 렌더링 되는 과정
-
-- [참고문서](https://d2.naver.com/helloworld/59361)
-
-### Javascript
-
-- HTML과 CSS는 우리가 만든 view를 조금 더 깔끔하게, 직관적으로 만들어주었지만 동적으로 HTML Dom을 추가하거나 수정, 삭제하는 등의 동적인 부분을 표현하기엔 부족했다. HTML과 CSS, 그리고 JS를 통해 완벽해진 view를 만들어보자.
-- 자바스크립트는 HTML, CSS와 마찬가지로 무언가를 설치할 필요없이 브라우저에서 바로 동작한다. 브라우저의 콘솔에서 여러가지 자바스크립트 요소에 대해 알아보자.
-
-#### 요소 선택자
-
-- 프론트에서의 기본 자바스크립트는 3가지만 알고 있으면 된다. 요소, 이벤트, 함수. 요소는 특정 HTML 요소를 찾아내는 선택자로 찾을 수 있고, 이벤트는 사용자가 사이트에서 하는 모든 행동을 담을 수 있다. 함수는 개발자가 정의한 특정 로직을 의미한다.
+### Javascript & jQuery
 
 ```javascript
-// 요소 선택자
-// document에는 사용자가 서버로부터 받아온 모든 HTML의 내용이 담겨있다.
-document.getElementById('id') // id를 가진 하나의 요소를 찾는다. return 값은 요소 1개
-document.getElementsByClassName('class') // class를 가진 요소를 찾는다. return 값은 배열형태
-document.getElementsByTagName('tag') // HTML태그를 모두 찾는다. return 값은 배열형태
-document.querySelector('css선택자') // css선택자로 요소를 찾는다. return 값은 요소 1개
-document.querySelectorAll('css선택자') // css선택자로 요소를 찾는다. return 값은 배열형태
-```
+// 버튼(요소)에 마우스를 오버(이벤트) 했더니(이벤트 리스너)
+// 그 위에있던 글자(요소)들이 갑자기 이상한 글자로 변해버린다(이벤트 핸들러).
+// var index = 1;
+// var text = document.getElementsByClassName("card-title")[index].innerText;
+// var btn = document.getElementsByClassName("btn")[index];
 
+// btn.addEventListener("mouseover", function() {
+//   var title = document.getElementsByClassName("card-title")[index];
+//   console.dir(title);
+//   title.innerText = "Don't Touch me..";
+// });
 
+// btn.addEventListener("mouseout", function() {
+//   var title = document.getElementsByClassName("card-title")[index];
+//   title.innerText = text;
+// })
+// 익명함수
 
-#### 변수
+// 버튼(요소)에 마우스를 올리면(이벤트, 이벤트 리스너)
+// 해당 버튼(요소)의 class가 btn btn-danger로 변함(이벤트 핸들러)
+var btn = document.getElementsByClassName("btn")[0];
+btn.addEventListener("mouseover", function() {
+  btn.setAttribute("class", "btn btn-danger");
+})
 
-- 이렇게 선택한 요소나 기타 내용들을 변수에 담아서 사용할 수 있다. 자바스크립트에서 변수는 형태를 지정하지 않고 `var`를 이용하여 변수를 선언한다(ES5 기준)
-
-```javascript
-var a = 10;
-var b = "힘내요";
-var c = true;
-```
-
-
-
-#### Console
-
-- 크롬 브라우저의 개발자 도구에 보면 console 탭이 있다. 이 console 탭에서는 많은 메시지를 보고 자바스크립트를 동작시킬 수 있으며, 이 부분은 자바스크립트에서 console 객체로 조작할 수 있다.
-
-```javascript
-console.log("done");
-console.error("error");
-console.dir(abc);
-```
-
-
-
-#### 이벤트
-
-- 이벤트는 브라우저에서 일어나는 사건 혹은 행위를 의미한다. 사용자의 클릭, 스크롤, 드래그, 마우스 이동 등 다양한 이벤트가 일어난다. 자바스크립트에서는 해당 이벤트를 감지하고 이벤트를 감지했을 때 특정 결과를 만들어내게 끔 할 수 있다.
-- 이벤트의 종류는 매우 다양해서 모두 다 살펴볼 순 없지만 주요한 이벤트들만 우선 살펴보자
-
-```javascript
-var btn = document.getElementsByTagName('button')[0];
-console.dir(btn);
-```
-
-- 해당 내용을 콘솔에 출력해보면 많은 속성들을 가진 것을 볼 수 있는데, 그중에서 on이 붙어있는 모든 속성이 이벤트에 해당한다.
-
-
-
-#### 이벤트 리스너
-
-- 요소에 이벤트가 발생했을 때, 해당 이벤트가 발생했는지 감지하는 것을 이벤트 리스너라고 한다. 만약 `버튼을 클릭하다.` 라고 했을 때, `버튼`은 요소가 되고 `클릭하다`는 이벤트가 된다. 이벤트 리스너는 `버튼을 클릭했을 때`를 감지한다고 할 수 있겠다.
-- 요소에 이벤트 리스너를 추가하는 방법에는 두가지가 있다. 
-
-```javascript
-btn.onclick = function() {
-    ...
-};
-btn.addEventListener('click', function() {
-    ...
+btn.addEventListener("mouseout", function() {
+  btn.setAttribute("class", "btn btn-primary");
 })
 ```
 
-- 함수에 대해서는 차차 이야기 하겠지만 `function() {}` 부분이 바로 자바스크립트 함수에 해당한다.
+- 코드를 구성할 때 해결하고자 하는 문제를 한번에 해결하는 것이 아니라 단계적 구성이 필요하다. 문제를 세분화하고 해당 문제를 해결하기까지 어떤 과정이 있을지 고민하는 것이 더 나은 코드를 위한 시발점이 될 것 같다. 문제 상황이 주어지면 먼저 키보드부터 누르는 것이 아니라 해당 문제의 시발점과 도착점을 찾고 시발점에서 도착점까지 나아가기 위한 과정을 나열하다보면 그 나열된 항목들이 모두 코드를 짜는 기초가 될 것이다. 만약 나열된 과정조차 어렵다면 그 문제를 더 세분화 해보길 바란다.
 
 
 
-#### 함수
+### jQuery
 
-- 자바스크립트 함수는 기본적인 블록중에 하나이며, 작업을 수행하거나 값을 계산하는 등의 일종의 절차이다. 다시말해 레일즈에서 활용하던 액션에 해당한다고 보면 편할 것이다. 함수를 사용하려면  함수에서 동작하고자 하는 내용을 적어야 하는데 함수의 정의는 호출하고자 하는 범위 내에서 선언되어 있어야 한다.
-- 자바스크립트 함수를 만드는 방법은 다음과 같다.
+- jQuery(요소 선택자, 이벤트 리스너)
 
 ```javascript
-var func1 = function() {
-    ...
-} // 함수 표현식
-function fuc2() {
-    ...
-} // 함수 선언식
-// 이외에 익명함수로도 선언할 수 있다.
+// $('.btn').이벤트명(이벤트핸들러)
+$('.btn').mouseover(function() {
+    alert("건드리지마 ㅠㅠ 아프니까 ㅠㅠ");
+})
 ```
 
-- 두 선언방식의 차이는 함수 표현식은  선언되기 이전에 사용할 수 없고, 함수 선언식은 선언되기 이전에도 사용할 수 있다. (동작 방식이나, 호이스팅에 대한 설명은 [참고자료](https://developer.mozilla.org/ko/docs/Glossary/Hoisting)로 대체함)
-- 함수를 실행할 때에는 다음과 같이 할 수 있다.
+- **마우스가 버튼위에 올라갔을때, 버튼에 있는 btn-primary 클래스를 삭제하고 btn-danger 클래스를 준다. 버튼에서 마우스가 내려왔을 때 다시 btn-danger 클래스를 삭제하고 btn-primary클래스를 추가한다.**
+- 여러개의 이벤트 등록하기.
+- 요소에 class를 넣고 빼는 jQuery function을 찾기.
+
+
+
+#### 간단과제
+
+- 텍스트 변환기(오타치는 사람 놀리기)
+
+*index.html*
+
+```html
+<textarea id="input" placeholder="변환할 텍스트를 입력해주세요."></textarea>
+<button class="translate">바꿔줘</button>
+<h3></h3>
+```
+
+- input에 들어있는 텍스트 중에서 '관리' -> '고나리', '확인' -> '호가인', '훤하다' -> '허누하다' 의 방식으로 텍스트를 오타로 바꾸는 이벤트 핸들러 작성하기
+- https://github.com/e-/Hangul.js 에서 라이브러리를 받아서 자음과 모음을 분리하고, 다시 단어로 합치는 기능 살펴보기
+- `String.split('')` : `''`안에 있는 것을 기준으로 문자열을 잘라준다(return type: 배열)
+- `Array.join('')` : 배열에 들어있는 내용들을 `''`안에 있는 내용을 기준으로 합쳐줌
+- `Array.map(function(el){})` : 배열을 순회하면서 하나의 요소마다 function을 실행시킴(el: 순회하는 각 요소, return type: 새로운 배열)
+
+
+
+>1. textarea에 있는 내용물을 가지고 오는 코드
+>2. 버튼에 이벤트 리스너(click)를 달아주고, 핸들러에는 1번에서 작성한 코드를 넣는다.
+>3. 1번 코드의 결과물을 한글자씩 분해해서 배열로 만들어준다.(split(''))
+>4. 3번의 결과 배열에 4번째 요소가 있고 2,3번째 요소가 모음일 경우
+>5. 3번째 모음과 4번째 자음을 바꿔준다.
+>6. 결과물로 나온 배열을 문자열로 이어준다.('join')
+>7. 결과물을 출력해줄 요소를 찾는다.
+>8. 요소에 결과물을 출력한다.
+
+
+
+#### this 와 $(this)
+
+- 이벤트 핸들러 내에서의 this는 이벤트가 발생하고 있는 바로 그 요소를 나타낸다. javscript를 사용할 때 이 this에 어떤 값이 담기는 가는 매우 중요하다. 반드시 확인하고 넘어가길 바란다.
 
 ```javascript
-func1();
-func2();
+$('.btn').on('mouseover', function() {
+    $(this).toggleClass('btn-primary btn-danger');
+})
 ```
 
 
 
-#### 이벤트 핸들러
+###  ajax(Asynchronous JavaScript and XML )
 
-- 이벤트 리스너를 학습하면서 이벤트가 발생했을 경우 동작하는 함수를 지정했다. 이렇게 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수를 이벤트 핸들러라고 한다. 최종적으로 우리가 만들 `버튼을 클릭했을 때 alert 창을 뜨게한다.` 와 같은 내용을 다시 정의해보면 `버튼(요소)을 클릭(이벤트)했을 때(이벤트 리스너), alert 창을 뜨게한다(이벤트 핸들러)` 의 형태로 보면 되겠다.
+- 에이젝스라고 부르기도 하고, 아약스라고도 불리기도 한다. jQuery를 사용하면 이 ajax를 매우 쉽게 사용할 수 있다. 자바스크립트 ajax에 대해서는 다음 문서를 참고한다.
+- [참고1](https://developer.mozilla.org/ko/docs/Web/Guide/AJAX/Getting_Started), [참고2](https://opentutorials.org/course/1375/6843)
+- 레일즈에서 ajax를 구성하는 순서는 다음과 같다.
 
-```javascript
-var btn = document.getElementsByTagName('button')[0];
-btn.onclick = function() {
-    alert("하위~1");
-}
-btn.addEventListener('click', function() {
-    alert("하위~2");
+> 1. view.html.erb에서 ajax요청을 만든다.
+> 2. ajax요청을 받기 위한 route를 설정한다
+> 3. route에서 설정한 컨트롤러#액션을 선언한다.
+> 4. 해당 액션의 로직을 수행한 후 응답으로 보낼 js.erb파일을 생성한다. 여기서 js파일명은 액션명과 일치하는 것을 원칙으로 한다.
+
+*app/views/movies/show.html.erb*
+
+```erb
+...
+<button class="btn btn-info like">좋아요</button>
+<script>
+$(document).on('ready', function() {
+    $('.like').on('click', function() {
+        console.log("like!!!");
+        $.ajax({
+           url: '/likes/<%= @movie.id %>' 
+        });
+    })
 });
+</script>
 ```
 
+*config/routes.rb*
 
+```ruby
+...
+    get '/likes/:movie_id' => 'movies#like_movie'
+...
+```
+
+*app/controllers/movies_controller.rb*
+
+```ruby
+...
+  def like_movie
+    p params
+    # 현재 유저와 params에 담긴 movie간의 
+    # 좋아요 관계를 설정한다. 끗
+    @like = Like.where(user_id: current_user.id, movie_id: params[:movie_id]).first
+    if @like.nil?
+      @like = Like.create(user_id: current_user.id, movie_id: params[:movie_id])
+    else
+      @like.destroy
+    end
+    # 만약에 현재 로그인한 유저가 이미 좋아요를 눌렀을 경우
+    # 해당 Like 인스턴스 삭제
+    # 새로 누른 경우
+    # 좋아요 관계 설정
+  end
+...
+```
+
+*app/views/movies/like_movie.js.erb*
+
+```erb
+alert("좋아요 설정됐쩡");
+$('.like').text("좋아요 취소").toggleClass("btn-warning btn-info text-white");
+// 해당 부분은 과제임
+if(<%= @like.frozen? %>) {
+// 좋아요가 취소된 경우
+// 좋아요 취소버튼 -> 좋아요 버튼
+} else {
+// 좋아요가 새로 눌린 경우
+// 좋아요 버튼 -> 좋아요 취소
+}
+```
 
