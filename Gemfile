@@ -11,6 +11,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'devise'
 # file upload
 gem 'carrierwave'
+gem 'mini_magick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
